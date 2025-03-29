@@ -10,14 +10,14 @@ const Navbar = () => {
         Medic
       </a>
      {!user ? 
-     <>
+     <div className='flex justify-center items-center gap-2'>
      <Button>
       Sign In
      </Button>
      <Button>
       Sign Up
      </Button>
-     </>
+     </div>
      :
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

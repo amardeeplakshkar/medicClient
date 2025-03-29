@@ -1,42 +1,29 @@
 import React from 'react'
-import { useState } from 'react';
-import PatientForm from './components/foms/PatientForm';
-import DoctorForm from './components/foms/DoctorForm';
-import NGOForm from './components/foms/NgoForm';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
-import PostComponent from './components/post';
-import {posts} from '../data/post.ts'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Landing from './components/Landing'
+import Dashboard from './components/Dashboard'
+import SignUp from './components/SignUp'
 const App = () =>
 {
-  const [activeTab, setActiveTab] = useState("patient");
+  const routes = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Landing />
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />
+      },
+    ]
+  )
 
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6 text-center">Complete Your Profile</h1>
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-2xl mx-auto">
-        <TabsList className="grid grid-cols-3 w-full">
-          <TabsTrigger value="patient">Patient</TabsTrigger>
-          <TabsTrigger value="doctor">Doctor/Hospital</TabsTrigger>
-          <TabsTrigger value="ngo">NGO</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="patient">
-          <PatientForm />
-        </TabsContent>
-
-        <TabsContent value="doctor">
-          <DoctorForm />
-        </TabsContent>
-
-        <TabsContent value="ngo">
-          <NGOForm />
-        </TabsContent>
-      </Tabs>
-
-      <div className='my-4'>
-        <PostComponent verifiedPost={true} posts={posts} />
-      </div>
-    </div>
+    <div><RouterProvider router={routes}/></div>
   )
 }
 

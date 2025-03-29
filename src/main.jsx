@@ -7,8 +7,6 @@ import Landing from './components/Landing.js'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router location={""}>
-      <Landing/>
-    </Router>
+    <App/>
   </StrictMode>,
 )
