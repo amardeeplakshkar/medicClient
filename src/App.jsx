@@ -16,7 +16,7 @@ const App = () =>
         element: <Landing />
       },
       {
-        path: "/dashboard",
+        path: "/patient",
         element: <Dashboard />
       },
       {
@@ -32,15 +32,7 @@ const App = () =>
         element: <NgoPortal />
       },
       {
-        path: "/listings",
-        element: <Listings />
-      },
-      {
         path: "/doctor",
-        element: <PostComponent />
-      },
-      {
-        path: "/listings",
         element: <Listings />
       },
     ]

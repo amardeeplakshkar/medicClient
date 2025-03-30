@@ -35,7 +35,7 @@ const CreatePost = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/posts', {
+      const response = await fetch('http://localhost:3000/api/patient/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,6 +50,7 @@ const CreatePost = () => {
           reportUrl: [''],
           medicalHistory: '',
         });
+        alert("Successfully Posted!")
       }
     } catch (error) {
       console.error('Error creating post:', error);
@@ -86,7 +87,7 @@ const CreatePost = () => {
         {formData.imageUrl.map((url, index) => (
           <div key={index} className="flex gap-2 mt-2">
             <input
-              type="url"
+              type="text"
               value={url}
               onChange={(e) => handleFieldChange('imageUrl', index, e.target.value)}
               className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -115,7 +116,7 @@ const CreatePost = () => {
         {formData.reportUrl.map((url, index) => (
           <div key={index} className="flex gap-2 mt-2">
             <input
-              type="url"
+              type="text"
               value={url}
               onChange={(e) => handleFieldChange('reportUrl', index, e.target.value)}
               className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"

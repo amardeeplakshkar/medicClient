@@ -60,13 +60,7 @@ export const Hero = () => {
               <Link to="/sign-up" className="flex-1 sm:flex-none">
                 <Button size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 gap-2">
                   <UserRound size={18} />
-                  Join as Patient
-                </Button>
-              </Link>
-              <Link to="/sign-up" className="flex-1 sm:flex-none">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 gap-2">
-                  <Stethoscope size={18} />
-                  Join as Doctor
+                  Join Us
                 </Button>
               </Link>
             </div>

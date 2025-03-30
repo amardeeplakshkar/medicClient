@@ -32,7 +32,7 @@ export default function PatientForm() {
 
       if (response.ok) {
         const data = await response.json();
-        navigate("/ngo-portal", { state: data });
+        navigate("/patient", { state: data });
       }
     } catch (error) {
       console.error('Error:', error);

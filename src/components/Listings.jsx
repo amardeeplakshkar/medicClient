@@ -1,14 +1,50 @@
-import React from 'react'
-import { posts } from '../../data/post'
+import React, { useEffect, useState } from 'react'
+import { posts as mockPosts } from '../../data/post'
 import { Card, CardContent } from './ui/card'
 import { Tabs, TabsContent, TabsTrigger, TabsList } from './ui/tabs'
 import { CheckCircle2, TimerIcon } from 'lucide-react'
 import PostComponent from './post'
 import { Button } from './ui/button'
 import Navbar from './Navbar'
+import { useLocation } from 'react-router-dom'
 
 const Listings = () =>
 {
+    const [ posts, setPosts ] = useState([]);
+    const location = useLocation();
+    const data = location.state;
+    console.log("From Dashboard Post: ", data.user);
+
+    useEffect(() =>
+    {
+        const fetchPosts = async () =>
+        {
+            try
+            {
+                const response = await fetch("http://localhost:3000/api/patient/posts", {
+                    method: "GET",
+                    headers: { Authorization: `Bearer ${data.token}` },
+                });
+
+                if (!response.ok)
+                {
+                    throw new Error("Failed to fetch posts");
+                }
+
+                const postData = await response.json();
+                console.log("Posts: ", postData);
+                setPosts(postData.posts);
+                console.log(posts);
+            } catch (error)
+            {
+                console.error("Error fetching posts:", error);
+            }
+        };
+
+        fetchPosts();
+        
+    }, [posts]);
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
             <Navbar/>
@@ -38,14 +74,14 @@ const Listings = () =>
 
                             <TabsContent value="Verified" className="space-y-6">
                                 <div className="space-y-4">
-                                    <PostComponent posts={posts} verifiedPost={true} />
+                                    <PostComponent posts={mockPosts} verifiedPost={true} />
                                 </div>
                             </TabsContent>
 
                             <TabsContent value="Pending">
-                                {posts.length > 0 ? (
+                                {mockPosts.length > 0 ? (
                                     <div className="space-y-4">
-                                        <PostComponent posts={posts} />
+                                        <PostComponent posts={mockPosts} />
                                     </div>
                                 ) : (
                                     <div className="text-center py-12 bg-gray-50 rounded-lg border border-dashed border-gray-300">

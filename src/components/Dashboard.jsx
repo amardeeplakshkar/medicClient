@@ -10,8 +10,6 @@ import Navbar from './Navbar';
 // import {posts} from '../../data/post.ts'
 const Dashboard = () =>
 {
-    // const { user, loading } = useAuth();
-    // if (loading) return <p>Loading...</p>;
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
             <Navbar/>
