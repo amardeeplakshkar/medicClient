@@ -4,6 +4,8 @@ import Landing from './components/Landing'
 import Dashboard from './components/Dashboard'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
+import NgoPortal from './components/NgoPortal'
+import Listings from './components/Listings'
 const App = () =>
 {
   const routes = createBrowserRouter(
@@ -24,11 +26,21 @@ const App = () =>
         path: "/login",
         element: <Login />
       },
+      {
+        path: "/ngo-portal",
+        element: <NgoPortal />
+      },
+      {
+        path: "/listings",
+        element: <Listings />
+      },
     ]
   )
 
   return (
-    <div><RouterProvider router={routes}/></div>
+    <div>
+      <RouterProvider router={routes} />
+    </div>
   )
 }
 

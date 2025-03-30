@@ -1,60 +1,48 @@
 import React from 'react'
-import CreatePost from './CreatePost'
-import { Tabs, TabsContent, TabsTrigger, TabsList } from './ui/tabs';
-import { Card, CardContent } from './ui/card';
-// import useAuth from './hooks/useAuth';
-import PostComponent from './post';
-import { posts } from '../../data/post';
-import { FileText, PlusCircle, User } from 'lucide-react';
-import Navbar from './Navbar';
-// import {posts} from '../../data/post.ts'
-const Dashboard = () =>
+import { posts } from '../../data/post'
+import { Card, CardContent } from './ui/card'
+import { Tabs, TabsContent, TabsTrigger, TabsList } from './ui/tabs'
+import { CheckCircle2, TimerIcon } from 'lucide-react'
+import PostComponent from './post'
+import { Button } from './ui/button'
+import Navbar from './Navbar'
+
+const NgoPortal = () =>
 {
-    // const { user, loading } = useAuth();
-    // if (loading) return <p>Loading...</p>;
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
             <Navbar/>
             <div className="container mx-auto py-16 px-4">
                 <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-800">
-                    Patient Health Portal
+                    NGO Health Portal
                 </h1>
                 <Card className="border-none shadow-lg overflow-hidden bg-white/80 backdrop-blur-sm">
                     <CardContent className="p-6">
-                        <Tabs defaultValue="create" className="">
+                        <Tabs defaultValue="Verified" className="">
                             <TabsList className="grid w-full grid-cols-2 mb-8">
                                 <TabsTrigger
-                                    value="create"
+                                    value="Verified"
                                     className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
                                 >
-                                    <PlusCircle className="mr-2 h-4 w-4" />
-                                    Create Health Issue
+                                    <CheckCircle2 className="mr-2 h-4 w-4" />
+                                    Verified
                                 </TabsTrigger>
                                 <TabsTrigger
-                                    value="manage"
+                                    value="Pending"
                                     className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
                                 >
-                                    <FileText className="mr-2 h-4 w-4" />
-                                    Manage Your Issues
+                                    <TimerIcon className="mr-2 h-4 w-4" />
+                                    Pending
                                 </TabsTrigger>
                             </TabsList>
 
-                            <TabsContent value="create" className="space-y-6">
-                                <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 mb-6">
-                                    <h2 className="text-lg font-semibold text-blue-800 mb-2 flex items-center">
-                                        <User className="mr-2 h-5 w-5" />
-                                        Share Your Health Concerns
-                                    </h2>
-                                    <p className="text-gray-600">
-                                        Describe your health issue in detail to get help from qualified medical professionals.
-                                        The more information you provide, the better doctors can understand your situation.
-                                    </p>
+                            <TabsContent value="Verified" className="space-y-6">
+                                <div className="space-y-4">
+                                    <PostComponent posts={posts} verifiedPost={true} />
                                 </div>
-
-                                <CreatePost />
                             </TabsContent>
 
-                            <TabsContent value="manage">
+                            <TabsContent value="Pending">
                                 {posts.length > 0 ? (
                                     <div className="space-y-4">
                                         <PostComponent posts={posts} />
@@ -83,4 +71,4 @@ const Dashboard = () =>
     )
 }
 
-export default Dashboard
+export default NgoPortal

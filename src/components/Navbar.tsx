@@ -4,6 +4,7 @@ import { DropdownMenu, DropdownMenuGroup, DropdownMenuContent, DropdownMenuItem,
 import { Button } from './ui/button'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import useAuth from './hooks/useAuth'
+import { AppName } from '../../data/constants'
 const Navbar = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
@@ -15,9 +16,12 @@ const Navbar = () => {
 
   if (loading) return <p>Loading...</p>;
   return (
-    <div className='flex justify-between p-4 bg-gray-400/15 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100'>
-      <a href="/">
-        Medic
+    <div className='flex justify-between p-4 w-full py-4 bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b'>
+      <a href="/" className='flex justify-center items-center gap-2'>
+        <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+          <span className="text-white font-bold">M</span>
+        </div>
+        <span className="font-bold text-xl ">{AppName}</span>
       </a>
       {!user ?
         <div className='flex justify-center items-center gap-2'>
