@@ -6,6 +6,7 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import NgoPortal from './components/NgoPortal'
 import Listings from './components/Listings'
+import PostComponent from './components/post'
 const App = () =>
 {
   const routes = createBrowserRouter(
@@ -29,6 +30,14 @@ const App = () =>
       {
         path: "/ngo-portal",
         element: <NgoPortal />
+      },
+      {
+        path: "/listings",
+        element: <Listings />
+      },
+      {
+        path: "/doctor",
+        element: <PostComponent />
       },
       {
         path: "/listings",

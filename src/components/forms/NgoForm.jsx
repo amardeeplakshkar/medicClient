@@ -5,7 +5,7 @@ export default function NGOForm ()
 {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    orgName: '',
+    fullName: '',
     missionStatement: '',
     certifications: '',
     address: '',
@@ -34,7 +34,7 @@ export default function NGOForm ()
       {
         localStorage.setItem("token", data.token); // Store token in localStorage
         localStorage.setItem("user", JSON.stringify(data.user)); // Store user info
-        navigate("/dashboard");
+        navigate("/ngo-portal", { state: data });
       }
     });
   }
@@ -46,8 +46,8 @@ export default function NGOForm ()
         <input
           type="text"
           required
-          value={formData.orgName}
-          onChange={(e) => setFormData({ ...formData, orgName: e.target.value })}
+          value={formData.fullName}
+          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
         />
       </div>

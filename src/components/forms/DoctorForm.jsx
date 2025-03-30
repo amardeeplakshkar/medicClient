@@ -16,7 +16,7 @@ export default function DoctorForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/singup', {
+      await fetch('http://localhost:3000/api/auth/singup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,11 +27,29 @@ export default function DoctorForm() {
           specialization: formData.specialization.split(',').map(s => s.trim()),
           role: 'doctor'
         }),
+      }).then( async (res) => {
+        console.log(res);
+
+        const data = await res.json();
+
+        console.log(data);
+
+        if (res.ok)
+        {
+          localStorage.setItem("token", data.token); // Store token in localStorage
+          localStorage.setItem("user", JSON.stringify(data.user)); // Store user info
+          navigate("/doctor", { state: data });
+        }
+
+
+        // if (res.ok) {
+        //   navigate("/dashboard"); 
+        // }
       });
 
-      if (response.ok) {
-        navigate("/dashboard"); 
-      }
+      // if (response.ok) {
+      //   navigate("/dashboard"); 
+      // }
     } catch (error) {
       console.error('Error:', error);
     }

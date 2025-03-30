@@ -28,8 +28,11 @@ export default function PatientForm() {
         }),
       });
 
+      console.log(response.ok);
+
       if (response.ok) {
-        navigate("/dashboard"); 
+        const data = await response.json();
+        navigate("/ngo-portal", { state: data });
       }
     } catch (error) {
       console.error('Error:', error);

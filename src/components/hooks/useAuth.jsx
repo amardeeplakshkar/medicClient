@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
 const useAuth = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        setUser({});
+        setUser(null);
         setLoading(false);
         return;
       }
