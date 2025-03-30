@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function NGOForm() {
+export default function NGOForm ()
+{
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     orgName: '',
@@ -13,29 +14,30 @@ export default function NGOForm() {
     password: ""
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>
+  {
     e.preventDefault();
-    
-    try {
-      const response = await fetch('http://localhost:3000/api/auth/singup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          certifications: formData.certifications.split(',').map(c => c.trim()),
-          role: 'ngo',
-        }),
-      });
-
-      if (response.ok) {
-        navigate("/dashboard"); 
+    await fetch('http://localhost:3000/api/auth/singup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        certifications: formData.certifications.split(',').map(c => c.trim()),
+        role: 'ngo',
+      }),
+    }).then(async (res) =>
+    {
+      const data = await res.json();
+      if (res.ok)
+      {
+        localStorage.setItem("token", data.token); // Store token in localStorage
+        localStorage.setItem("user", JSON.stringify(data.user)); // Store user info
+        navigate("/dashboard");
       }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    });
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 p-4 bg-white rounded-lg shadow">
@@ -124,5 +126,5 @@ export default function NGOForm() {
         Register as NGO
       </button>
     </form>
-  );
+  )
 }

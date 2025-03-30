@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
 const useAuth = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        setUser(null);
+        setUser({});
         setLoading(false);
         return;
       }
@@ -24,11 +24,11 @@ const useAuth = () => {
           setUser(data.user);
         } else {
           localStorage.removeItem("token"); 
-          setUser(null);
+          setUser({});
         }
       } catch (error) {
         console.error("Error fetching session:", error);
-        setUser(null);
+        setUser({});
       }
       setLoading(false);
     };
