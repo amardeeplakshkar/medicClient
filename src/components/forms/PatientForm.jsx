@@ -7,7 +7,6 @@ export default function PatientForm() {
     fullName: '',
     age: '',
     gender: '',
-    medicalHistory: '',
     location: '',
     email: "",
     password: ""
@@ -96,16 +95,6 @@ export default function PatientForm() {
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Medical History</label>
-        <textarea
-          value={formData.medicalHistory}
-          onChange={(e) => setFormData({ ...formData, medicalHistory: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          rows={3}
-        />
       </div>
 
       <div>
